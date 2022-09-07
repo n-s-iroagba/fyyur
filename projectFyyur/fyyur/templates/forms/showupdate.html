@@ -1,0 +1,26 @@
+{% extends "bootstrap/base.html"%}
+{% import "bootstrap/wtf.html" as wtf%}
+
+{%block title%}Update venue{%endblock%}
+
+{% block content%}
+{% include "navbar.html"%}
+{% with messages = get_flashed_messages() %}
+{%if messages%}
+{%for msg in messages%}
+{{msg}}
+{%endfor%}
+{%endif%}
+{%endwith%}
+<h1>Update Venue</h1>
+<form class="center" method="POST"  enctype="multipart/form-data" type="datetime-local">
+{{wtf.form_field(form.venue_name)}}
+{{wtf.form_field(form.venue_address)}}
+{{wtf.form_field(form.venue_city)}}
+{{wtf.form_field(form.venue_state)}}
+{{wtf.form_field(form.venue_phone)}}
+{{wtf.form_field(form.venue_photo)}}
+{{wtf.form_field(form.update)}}
+
+</form>
+{%endblock%}

@@ -1,0 +1,134 @@
+<head> 
+    <script src="https://kit.fontawesome.com/252f3181eb.js" crossorigin="anonymous"></script>
+    {% extends "bootstrap/base.html"%}
+    {%block title%}{{venue.name}}{%endblock%}
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+{%block content%}
+{% include "navbar.html"%}
+
+{% if venue%}
+<div>
+    <b><ul>
+    <h1 style="color:dodgerblue;">
+    {{venue.name.upper()}}
+    </h1>
+    </ul>
+    </b>
+    <ul>
+        <b>
+            1d:{{venue.id}}
+        </b>
+    </ul>
+    <div class="photo"><ul>
+        <img src="{{ url_for('static',filename='images/{{venue_photo}}') }}" img>
+    </ul>
+    </div>
+    
+    </div>
+    
+    
+    <div><br>
+    <ul>
+        <i class="fa-solid fa-location-dot"></i>
+        {% for c,s in full_address %}
+        <b> {{c.name}},{{s.name}}</b>
+         {%endfor%}
+    </ul>
+    </div>
+    
+    <ul>
+        <i class="fa-solid fa-phone"></i>
+    <strong>
+        {{venue.venue_phone}}
+    </strong>
+    </ul>
+
+    <b> Want to play for us?</b>
+    </ul>
+{%if talent%}
+<ul>
+    <i class="fa-solid fa-music"></i>
+<b>
+   Yay! we're currently seeking talent, do not hesitate to call us!
+</b>
+</ul>
+{%else%}
+
+<ul>
+    <i class="fa-solid fa-music-slash"></i>  
+<b>
+    Sorry! we're not currently seeking talent, we'll be glad to let you know, when we are!
+</b>
+</ul>
+{%endif%}
+    
+    <div>
+    <div><ul>
+    <div style=" border:2px solid dodgerblue;">
+    <h2 style="color:dodgerblue;">Upcoming Shows</h2>
+    {%if shows%}
+    {% for s,v in shows%}
+    <div>
+        <ul>
+        <b>
+    <a href="/show/{{s.id}}"><H3><b>.{{s.show_name.upper()}}</a></b></H3>
+        </b>
+    </ul>
+    
+    <ul><p>performing live:</p>
+        <b>
+    <a href="/artist/{{v.id}}">.{{ v.artist_name.upper()}}</a>
+       </b>
+    </ul>
+    </ul>
+    </div>
+    {%endfor%}
+    {%else%}
+    <b>no upcoming shows!</b>
+    {%endif%}
+    
+    </div>
+    <br>
+    <ul>
+    <div style=" border:2px solid dodgerblue;">
+    <H2 style="color:dodgerblue;"> Previous Shows</H2>
+    {%if previous_show_details%}
+    {% for s,v in previous_show_details%}
+    <div>
+        <ul>
+            <i class="fa-solid fa-tv-music"></i>
+            <h3>
+        <a href="/shows/{{s.id}}"><b>{{s.show_name.upper()}}</a></b>
+            </h3>
+        </ul>
+          <ul>
+            <i class="fa-solid fa-circle-location-arrow"></i>
+            <b>
+        <a href="/venues/{{v.id}}">{{ v.name.upper()}}</a>
+           </b>
+        </ul>
+        
+    </div>
+    
+    {%endfor%}
+    {%else%}
+    <b>no previous shows!</b>
+    {%endif%}
+    </div>
+</ul>
+    <br>
+    </a><button id="updateV" data-id="{{venue.id}}"><b>Edit Venue info</b></button>
+    
+    {%endif%}
+    
+    <script>
+        const uvBtn = document.getElementById('updateV');
+            uvBtn.onclick = function(e) {
+              const venueId = e.target.dataset['id'];
+              fetch('/venue/' + venueId +"/edit", {
+                method: 'GET'
+              });
+            }
+    </script>  
+    {%endblock%}

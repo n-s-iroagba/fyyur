@@ -1,0 +1,38 @@
+
+<head> <link rel="stylesheet" href="static/css/style.css">
+  {% extends "bootstrap/base.html"%}
+  {%block title%}artists{%endblock%}
+  
+  </head>
+  {%block content%}
+{% include "navbar.html"%}
+{% with messages = get_flashed_messages() %}
+{%if messages%}
+{%for msg in messages%}
+{{msg}}
+{%endfor%}
+{%endif%}
+{%endwith%}
+{%if artists%}
+{%for artist in artists%}
+<ul><li class="box"><a href="/artist/{{artist.id}}"><b>{{artist.artist_name.upper()}}</b></a>
+   <b>
+    <button class="delete-box" data-id="{{artist.id}}" >delete</button></b></li></ul>
+{%endfor%}
+{% else%}
+<p>no "artist" listed yet</p>
+{%endif%}
+
+<script>
+    const deleteBtn = document.querySelectorAll('.delete-box');
+      for (let i = 0; i < deleteBtn.length; i++) {
+        const abtn = deleteBtn[i];
+        abtn.onclick = function(e) {
+          const artistId = e.target.dataset['id'];
+          fetch('/artist/' + artistId, {
+            method: 'DELETE'
+          });
+        }
+      }
+    </script>
+    {%endblock%}

@@ -1,0 +1,14 @@
+{% extends "bootstrap/base.html"%}
+
+{%block title%}new venue{%endblock%}
+{%block content%}
+{% include "navbar.html"%}
+<h1>Newly Listed Venues</h1>
+
+
+
+{%for s in venues%}
+<ul class="center"><li class=" tetiary1" ><a href="/venue/{{s.id}}"><b>{{s.name.upper()}}</b></a></li></ul>
+
+{% endfor%}
+{%endblock%}

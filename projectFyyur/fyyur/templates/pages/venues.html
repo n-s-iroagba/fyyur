@@ -1,0 +1,41 @@
+<head> <link rel="stylesheet" href="static/css/style.css">
+  {% extends "bootstrap/base.html"%}
+  {%block title%}venues{%endblock%}
+  </head>
+
+{%block content%}
+
+{% include "navbar.html"%}
+
+{% with messages = get_flashed_messages() %}
+{%if messages%}
+{%for msg in messages%}
+{{msg}}
+{%endfor%}
+{%endif%}
+{%endwith%}
+
+{%if venues%}
+{% for venue in venues%}
+<ul class="box"><li class="tertiary"><a href="venue/{{venue.id}}"><b>
+  {{venue.name.upper()}}</b></a>
+  <button  data-id="{{venue.id}}" class="delete-boxv">delete</button>
+</li></ul>
+{%endfor%}
+{%else%}
+<p>no venues listed</p>
+{%endif%}
+
+<script>
+  const vdeleteBtn = document.querySelectorAll('.delete-boxv');
+    for (let i = 0; i < vdeleteBtn.length; i++) {
+      const vbtn = vdeleteBtn[i];
+      vbtn.onclick = function(e) {
+        const venueId = e.target.dataset['id'];
+        fetch('/venue/' + venueId, {
+          method: 'DELETE'
+        });
+      }
+    }
+  </script>
+{% endblock %}

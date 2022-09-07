@@ -1,0 +1,33 @@
+{% extends "bootstrap/base.html"%}
+{% import "bootstrap/wtf.html" as wtf%}
+
+{%block title%}Register Artist{%endblock%}
+
+{% block content%}
+{% include "navbar.html"%}
+{% with messages = get_flashed_messages() %}
+{%if messages%}
+{%for msg in messages%}
+{{msg}}
+{%endfor%}
+{%endif%}
+{%endwith%}
+<h1>Register New Artist</h1>
+<form   class="center" method="POST" enctype="multipart/form-data" type="datetime-local">
+    {{wtf.form_field(form.artist_name)}}
+    {{wtf.form_field(form.artist_photo)}}
+    {{wtf.form_field(form.city)}}
+    {{wtf.form_field(form.artist_state)}}
+    {{wtf.form_field(form.artist_phone)}}
+    {{ wtf.form_field(form.genre1)}}
+    {{ wtf.form_field(form.genre2)}}
+    {{ wtf.form_field(form.genre3)}}
+    {{wtf.form_field(form.talent)}}
+    {{wtf.form_field(form.book_from)}}
+    {{wtf.form_field(form.book_to)}}
+    {{wtf.form_field(form.create)}}
+</form>
+
+
+
+{%endblock%}

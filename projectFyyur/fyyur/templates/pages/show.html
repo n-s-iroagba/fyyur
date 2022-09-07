@@ -1,0 +1,38 @@
+<head> <link rel="stylesheet" href="static/css/style.css">
+    {% extends "bootstrap/base.html"%}
+    {%block title%}show{%endblock%}
+    </head>
+{%block content%}
+{% include "navbar.html"%}
+<h1  > Upcoming Show</h1>
+{% if show%}
+<b>
+    <ul>
+    <h1 style="color:dodgerblue;">
+    {{show.show_name.upper()}}
+    </h1>
+    </ul>
+</b>
+<div class="photo"><ul>
+    <img src="{{ url_for('static',filename='images/{{show_cover_photo}}') }}" img>
+</ul>
+<ul>
+<b>date and time:</b>
+<b>{{show.show_date}} <br> {{show.time}}</b>
+</ul>
+ <ul><i class="fa-solid fa-circle-location-arrow"></i>
+    <b>
+        <b>at:</b><br>
+    <a href="/venue/{{venue.id}}">{{venue.name.upper()}}</a>
+    </b>
+ </ul>
+ <ul>
+<p><b>performance by:</b></p>
+<b>
+<a href="/artist/{{artist.id}}">{{artist.artist_name.upper()}}</a>
+</b>
+ </ul>
+{%endif%}
+
+
+{%endblock%}

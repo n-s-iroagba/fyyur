@@ -1,0 +1,29 @@
+{% extends "bootstrap/base.html"%}
+{% import "bootstrap/wtf.html" as wtf%}
+
+{%block title%}Register Artist{%endblock%}
+{% block content%}
+{% with messages = get_flashed_messages() %}
+{%if messages%}
+{%for msg in messages%}
+{{msg}}
+{%endfor%}
+{%endif%}
+{%endwith%}
+{% include "navbar.html"%}
+<h1>Edit Artist Details</h1>
+<form class="container" action="/artist/{{artist.id}}/edit" data-id="{{artist.id}}" method="PUT" enctype="multipart/form-data">
+    {{wtf.form_field(form.artist_name)}}
+    {{wtf.form_field(form.artist_city)}}
+    {{wtf.form_field(form.artist_state)}}
+    {{wtf.form_field(form.artist_photo)}}
+    {{wtf.form_field(form.artist_phone)}}
+    {{ wtf.form_field(form.genre1)}}
+    {{ wtf.form_field(form.genre2)}}
+    {{ wtf.form_field(form.genre3)}}
+    {{wtf.form_field(form.book_from)}}
+    {{wtf.form_field(form.book_to)}}
+    {{wtf.form_field(form.talent)}}
+    {{wtf.form_field(form.update)}}
+</form>
+{%endblock%}

@@ -1,0 +1,55 @@
+{% extends "bootstrap/base.html"%}
+{% block content %}
+{% include "navbar.html"%}
+
+{%if nvenue%}
+{%for n in nvenue%}
+{{n.name}}
+{% endfor %}
+{%endif%}
+
+{%if svenue%}
+{%for s in svenue%}
+{{s.name}}
+{% endfor %}
+{%endif%}
+
+{%if cartist%}
+{%for c in cartist%}
+{{c.artist_name}}
+{% endfor %}
+{%endif%}
+
+{%if nartist%}
+{%for n in nartist%}
+{{n.artist_name}}
+{% endfor %}
+{%endif%}
+
+{%if sartist%}
+{%for s in sartist%}
+{{s.artist_name}}
+{% endfor %}
+{%endif%}
+
+
+
+{%if cshow%}
+{%for c in cshow%}
+{{c.show_name}}
+{% endfor %}
+{%endif%}
+
+{%if nshow%}
+{%for n in nshow%}
+{{n.show_name}}
+{% endfor %}
+{%endif%}
+
+{%if sshow%}
+{%for s in sshow%}
+{{s.show_name}}
+{% endfor %}
+{%endif%}
+
+{% endblock %}

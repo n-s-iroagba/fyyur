@@ -1,0 +1,16 @@
+{% extends "bootstrap/base.html"%}
+
+{%block title%}new artists{%endblock%}
+
+{%block content%}
+{% include "navbar.html"%}
+<h1>Newly Listed Artists</h1>
+{%if artists%}
+{%for artist in artists%}
+<ul class="center" ><li class="tertiary1" ><a href="/artist/{{artist.id}}"><b>{{artist.artist_name.upper()}}</b><a></li></ul>
+
+{% endfor%}
+{%else%}
+{{'no artist listed'}}
+{%endif%}
+{%endblock%}

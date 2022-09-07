@@ -1,0 +1,34 @@
+<head>
+  <link rel="stylesheet" href="static/css/style.css">
+  {% extends "bootstrap/base.html"%}
+  {%block title%}shows{%endblock%}
+  </head>
+{%block content%}
+{% with messages = get_flashed_messages() %}
+{%if messages%}
+{%for msg in messages%}
+{{msg}}
+{%endfor%}
+{%endif%}
+{%endwith%}
+<h1> Upcoming Shows</h1>
+{% for s in shows%}
+<li class="box">
+  <b><a href="show/{{s.id}}">{{s.show_name.upper()}}</a></b>
+  <button class="delete-boxs"  data-id="{{s.id}}">delete</button>
+</li>
+{%endfor%}
+
+<script>
+  const deleteBtns = document.querySelectorAll('.delete-boxs');
+    for (let i = 0; i < deleteBtns.length; i++) {
+      const sbtn = deleteBtns[i];
+      sbtn.onclick = function(e) {
+        const showId = e.target.dataset['id'];
+        fetch('/show/' + showId, {
+          method: 'DELETE'
+        });
+      }
+    }
+  </script>
+{%endblock%}

@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  {% import "bootstrap/wtf.html" as wtf%}
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{url_for('index')}}">Home</a>
+      <a class="navbar-brand" href="{{url_for('new_artists')}}">Newly Listed Artists</a>
+      <a class="navbar-brand" href="{{url_for('new_venues')}}">Newly Listed Venues</a>
+      <a class="navbar-brand" href="{{url_for('new_shows')}}">Newly Listed Shows</a>
+     
+      <form class="d-flex" method="POST">
+        {{wtf.form_field(seform.searched)}}
+        {{wtf.form_field(seform.search)}}
+      </form>
+    </div>
+  

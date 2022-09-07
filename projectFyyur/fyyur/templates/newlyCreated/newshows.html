@@ -1,0 +1,15 @@
+{% extends "bootstrap/base.html"%}
+
+{%block title%}<p>{{newshows}}</p>{%endblock%}
+
+{%block content%}
+{% include "navbar.html"%}
+<h1>Newly Listed Shows</h1>
+{% if shows %}
+{%for s in shows%}
+<ul class="center"><li class="tertiary"><a href="shows/{{s.id}}"><b>{{s.show_name.upper()}}</b></a></li></ul>
+{% endfor%}
+{%else%}
+<p>no new shows</p>
+{%endif%}
+{%endblock%}

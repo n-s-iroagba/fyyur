@@ -1,0 +1,29 @@
+{% extends "bootstrap/base.html"%}
+{% import "bootstrap/wtf.html" as wtf%}
+
+{%block title%}Register Show{%endblock%}
+
+{% block content%}
+{% import "bootstrap/wtf.html" as wtf%}
+{% include "navbar.html"%}
+{% with messages = get_flashed_messages() %}
+{%if messages%}
+{%for msg in messages%}
+{{msg}}
+{%endfor%}
+{%endif%}
+{%endwith%}
+<h1>Register Show</h1>
+<form class="center" method="POST"  enctype="multipart/form-data" type="date">
+{{wtf.form_field(form.show_name)}}
+{{wtf.form_field(form.show_date)}}
+{{wtf.form_field(form.time)}}
+{{wtf.form_field(form.show_cover_photo)}} 
+{{wtf.form_field(form.show_artist_name)}} 
+{{wtf.form_field(form.show_venue_name)}}
+{{wtf.form_field(form.create)}}
+
+</form>
+{%endblock%}
+
+
